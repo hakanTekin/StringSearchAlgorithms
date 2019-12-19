@@ -16,7 +16,7 @@ public class Experiments {
 	final int R = 26;
 	String inputFile;
 	
-	public Experiments(String pattern,int R, String inputFile) {
+	public Experiments(String pattern, String inputFile) {
 		
 		this.pattern = pattern;
 		this.inputFile = inputFile;
