@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Scanner;
 
 import Dependencies.BoyerMoore;
 import Dependencies.Brute;
@@ -33,7 +32,10 @@ public class Experiments {
 	private void createTextString() {
 		
 		try {
-			txt = Files.readString(Paths.get(this.inputFile));
+			//txt = Files.readString(Paths.get(this.inputFile));
+			Scanner scanner = new Scanner( new File(inputFile) );
+			txt = scanner.useDelimiter("\\A").next();
+			scanner.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -48,7 +50,7 @@ public class Experiments {
 
 		Brute brute = new Brute();
 		brute.search1(pattern,txt);
-
+		
 		double end = System.currentTimeMillis();
 
 		System.out.println("Brute Force took: "+(end-start)+"ms");
@@ -79,7 +81,6 @@ public class Experiments {
 
 		RabinKarp rk = new RabinKarp(pattern);
 		rk.search(txt);
-
 		double end = System.currentTimeMillis();
 
 		System.out.println("Rabin-Karp took: "+(end-start)+"ms");

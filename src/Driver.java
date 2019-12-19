@@ -8,7 +8,7 @@ public class Driver {
 		// TODO Auto-generated method stub
 		
 		String pattern = "it is a far, far better thing that I do, than I have ever done.";
-		String inputFile = "tale.txt";
+		String inputFile = "dickens.txt";
 		
 		Experiments experiment = new Experiments(pattern, inputFile);
 	}
