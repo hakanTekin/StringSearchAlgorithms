@@ -1,2 +1,3 @@
 # StringSearchAlgorithms
-Algorithms course homework 4
+- Implementation of a Spell Check Program using Trie structures
+- Comparison of String Search Algorithms
