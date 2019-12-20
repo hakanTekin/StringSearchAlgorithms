@@ -134,7 +134,7 @@ public class RabinKarp {
         }
 
         // no match
-        return n;
+        return -1;
     }
 
 
@@ -144,27 +144,5 @@ public class RabinKarp {
         return prime.longValue();
     }
 
-    /** 
-     * Takes a pattern string and an input string as command-line arguments;
-     * searches for the pattern string in the text string; and prints
-     * the first occurrence of the pattern string in the text string.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        String pat = args[0];
-        String txt = args[1];
-
-        RabinKarp searcher = new RabinKarp(pat);
-        int offset = searcher.search(txt);
-
-        // print results
-        StdOut.println("text:    " + txt);
-
-        // from brute force search method 1
-        StdOut.print("pattern: ");
-        for (int i = 0; i < offset; i++)
-            StdOut.print(" ");
-        StdOut.println(pat);
-    }
+  
 }

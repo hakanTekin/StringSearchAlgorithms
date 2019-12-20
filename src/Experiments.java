@@ -49,7 +49,9 @@ public class Experiments {
 		double start = System.currentTimeMillis();
 
 		Brute brute = new Brute();
+		
 		brute.search1(pattern,txt);
+		
 		
 		double end = System.currentTimeMillis();
 
