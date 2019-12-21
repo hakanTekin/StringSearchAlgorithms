@@ -116,6 +116,20 @@ public class KMP {
         if (j == m) return i - m;    // found
         return -1;                    // not found
     }
+    
+    public int searchTrace(String txt) {
+
+        // simulate operation of DFA on text
+        int m = pat.length();
+        int n = txt.length();
+        int i, j;
+        for (i = 0, j = 0; i < n && j < m; i++) {
+        	System.out.println(txt.charAt(i) + ":" + j + " ");
+            j = dfa[txt.charAt(i)][j];
+        }
+        if (j == m) return i - m;    // found
+        return -1;                    // not found
+    }
 
     /**
      * Returns the index of the first occurrrence of the pattern string

@@ -18,7 +18,7 @@ public class SpellCheck {
 		String dictionaryFileName = "dictionary.txt";//sc.next();
 		
 		System.out.print("\nText Filename : ");
-		String textFileName = "testWrongWords.txt";//sc.next();
+		String textFileName = "longText.txt";//sc.next();
 		System.out.println();
 
 		SpellCheck spellCheck = new SpellCheck(dictionaryFileName, textFileName);
@@ -31,7 +31,9 @@ public class SpellCheck {
 		this.dictionary = new File(dictionaryName);
 		this.text = new File(textName);
 		createTrie();
+		Stopwatch sw = new Stopwatch();
 		searchText();
+		System.out.println("Elapsed Time : " + sw.elapsedTime());
 	}
 
 	private TrieST<Integer> createTrie() {
@@ -89,8 +91,8 @@ public class SpellCheck {
 	}
 
 	private String suggestWord(String wrongWord) {
-		String suggestion = "";
-		for(int i = wrongWord.length()-1; i >= 0; i--) {
+		String suggestion = "NO SUGGESTION";
+		for(int i = 0; i<=wrongWord.length()-1; i++) {
 			String ww = wrongWord.substring(0,i).toUpperCase();
 			if(dictionaryTrie.contains(ww)) {
 				suggestion = ww;

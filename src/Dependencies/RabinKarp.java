@@ -126,7 +126,30 @@ public class RabinKarp {
             // Remove leading digit, add trailing digit, check for match. 
             txtHash = (txtHash + q - RM*txt.charAt(i-m) % q) % q; 
             txtHash = (txtHash*R + txt.charAt(i)) % q; 
+            // match
+            int offset = i - m + 1;
+            if ((patHash == txtHash) && check(txt, offset))
+                return offset;
+        }
 
+        // no match
+        return -1;
+    }
+    public int searchTrace(String txt) {
+        int n = txt.length(); 
+        if (n < m) return n;
+        long txtHash = hash(txt, m); 
+
+        // check for match at offset 0
+        if ((patHash == txtHash) && check(txt, 0))
+            return 0;
+
+        // check for hash match; if hash match, check for exact match
+        for (int i = m; i < n; i++) {
+            // Remove leading digit, add trailing digit, check for match. 
+            txtHash = (txtHash + q - RM*txt.charAt(i-m) % q) % q; 
+            txtHash = (txtHash*R + txt.charAt(i)) % q; 
+            System.out.println("Hash value :" + txtHash + ", Pattern Value : " + patHash);
             // match
             int offset = i - m + 1;
             if ((patHash == txtHash) && check(txt, offset))

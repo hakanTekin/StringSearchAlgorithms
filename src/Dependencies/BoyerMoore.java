@@ -110,6 +110,26 @@ public class BoyerMoore {
         }
         return -1;                       // not found
     }
+    
+    public int searchTrace(String txt) {
+    	System.out.println("Length of Text : " + txt.length());
+        int m = pat.length();
+        int n = txt.length();
+        int skip;
+        for (int i = 0; i <= n - m; i += skip) {
+            skip = 0;
+            for (int j = m-1; j >= 0; j--) {
+            	System.out.print("\nPattern at : (" + j + ") " + pat.charAt(j) + ", Text char at : (" + (i+j) + ") " + txt.charAt(i+j)+ ", Skip Value : "+ skip);
+                if (pat.charAt(j) != txt.charAt(i+j)) {
+                    skip = Math.max(1, j - right[txt.charAt(i+j)]);
+                    break;
+                }
+                System.out.print(" - pattern match");
+            }
+            if (skip == 0) return i;    // found
+        }
+        return -1;                       // not found
+    }
 
 
     /**
