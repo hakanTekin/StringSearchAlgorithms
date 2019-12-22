@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import Dependencies.BoyerMoore;
 import Dependencies.Brute;
@@ -36,16 +38,29 @@ public class Experiments {
 	
 	private void createTextString() {
 		
-		try {
+		/*try {
 			
-			Scanner scanner = new Scanner( new File(inputFile) );
-			txt = scanner.useDelimiter("\\A").next();
+			Scanner scanner = new Scanner( new File(inputFile));
+			
+			//txt = scanner.useDelimiter("\\A").next();
 			scanner.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		//String content = "";
+		 
+        try
+        {
+            txt = new String ( Files.readAllBytes( Paths.get(inputFile) ) );
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        
+        //System.out.println(txt);
 		
 	}
 	
@@ -55,7 +70,6 @@ public class Experiments {
 
 		Brute brute = new Brute();
 		
-		//System.out.println(txt);
 		brute.search1(pattern,txt);
 		
 		
