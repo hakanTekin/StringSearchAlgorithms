@@ -18,7 +18,7 @@ public class SpellCheck {
 		String dictionaryFileName = "dictionary.txt";//sc.next();
 		
 		System.out.print("\nText Filename : ");
-		String textFileName = "longText.txt";//sc.next();
+		String textFileName = "long.txt";//sc.next();
 		System.out.println();
 
 		SpellCheck spellCheck = new SpellCheck(dictionaryFileName, textFileName);
@@ -42,7 +42,7 @@ public class SpellCheck {
 		try {
 			sc = new Scanner(this.dictionary);
 			for(int i =0; sc.hasNext(); i++) {
-				trie.put(sc.next(), i);
+				trie.put(sc.next().toLowerCase(), i);
 			}
 			dictionaryTrie = trie;
 			sc.close();
@@ -77,7 +77,7 @@ public class SpellCheck {
 
 			while(sc.hasNext()) {
 				curWord = sc.next();
-				if(!this.dictionaryTrie.contains(curWord.toUpperCase())){ //if true, then the word is misspelled
+				if(!this.dictionaryTrie.contains(curWord.toLowerCase())){ //if true, then the word is misspelled
 					//SuggestWord can be switched with Suggest3Word. Which suggests 3 words, instead of 1
 					System.out.println("Error: " + curWord + "(index:" + indexCounter + ")- suggested: " + suggestWord(curWord));
 				}
@@ -91,9 +91,10 @@ public class SpellCheck {
 	}
 
 	private String suggestWord(String wrongWord) {
-		String suggestion = "NO SUGGESTION";
-		for(int i = 0; i<=wrongWord.length()-1; i++) {
-			String ww = wrongWord.substring(0,i).toUpperCase();
+		String suggestion = "";
+		//for(int i = 0; i<=wrongWord.length()-1; i++) {
+		for(int i = wrongWord.length(); i>0; i--) {	
+			String ww = wrongWord.substring(0,i).toLowerCase();
 			if(dictionaryTrie.contains(ww)) {
 				suggestion = ww;
 				break;
@@ -101,8 +102,19 @@ public class SpellCheck {
 		}
 		return suggestion;
 	}
+	
 	private String[] suggest3Word(String wrongWord) {
 		String[] suggestion = new String[3];
+		int count = 0;
+		//for(int i = 0; i<=wrongWord.length()-1; i++) {
+				for(int i = wrongWord.length(); i>0; i--) {	
+					String ww = wrongWord.substring(0,i).toLowerCase();
+					if(dictionaryTrie.contains(ww)) {
+						suggestion[count++] = ww;
+						if(count == 3)
+						break;
+					}
+				}
 		return suggestion;
 	}
 }
