@@ -1,12 +1,13 @@
 import Dependencies.BoyerMoore;
+import Dependencies.Brute;
 import Dependencies.KMP;
 import Dependencies.RabinKarp;
 
 public class SearchAlgorithmTracer {
 	public static void main(String[] args) {
 		int R = 26;
-		String text = "AAAAAAAAAAAAAAAAAAAAAAAAB";
-		String pattern ="AAAAAAAB";
+		String text = "ABABABABAABABABABAAAAAAAA";
+		String pattern ="ABABABAB";
 		SearchAlgorithmTracer sat = new SearchAlgorithmTracer(R, text, pattern);
 	}
 	
@@ -16,11 +17,19 @@ public class SearchAlgorithmTracer {
 		this.pattern = pattern;
 		this.R = R;
 		this.text = text;
+		traceBrute();
 		traceKMP();
 		traceBM();
 		traceRK();
 	}
 	
+	private void traceBrute() {
+		System.out.println("-----------------------------------");
+		System.out.println("Brute Force trace: ");
+		Brute brute = new Brute();
+		brute.searchTrace(pattern,text);
+		System.out.println("-----------------------------------");
+	}
 	private void traceKMP() {
 		System.out.println("-----------------------------------");
 		System.out.println("Knuth Morris Pratt trace: ");

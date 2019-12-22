@@ -50,6 +50,22 @@ public class Brute {
         }
         return -1;                            // not found
     }
+    
+    public static int searchTrace(String pat, String txt) {
+        int m = pat.length();
+        int n = txt.length();
+        System.out.println("i j (i+j)");
+        for (int i = 0; i <= n - m; i++) {
+            int j;
+            for (j = 0; j < m; j++) {
+            	System.out.println(i+" "+j+" "+(i+j));
+                if (txt.charAt(i+j) != pat.charAt(j))
+                    break;
+            }
+            if (j == m) return i;            // found at offset i
+        }
+        return -1;                            // not found
+    }
 
     // return offset of first match or N if no match
     public static int search2(String pat, String txt) {

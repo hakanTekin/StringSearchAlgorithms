@@ -118,11 +118,13 @@ public class KMP {
     }
     
     public int searchTrace(String txt) {
-
+    	
+    	
         // simulate operation of DFA on text
         int m = pat.length();
         int n = txt.length();
         int i, j;
+        
         for (i = 0, j = 0; i < n && j < m; i++) {
         	System.out.println(txt.charAt(i) + ":" + j + " ");
             j = dfa[txt.charAt(i)][j];
