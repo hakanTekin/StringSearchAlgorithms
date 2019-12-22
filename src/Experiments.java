@@ -10,7 +10,7 @@ import Dependencies.RabinKarp;
 public class Experiments {
 
 	
-	static String pattern = "it is a far, far better thing that I do, than I have ever done.";
+	static String pattern = "It is a far, far better thing that I do, than I have ever done";
 	static String txt;
 	final int R = 26;
 	String inputFile;
@@ -20,7 +20,12 @@ public class Experiments {
 		this.pattern = pattern;
 		this.inputFile = inputFile;
 		
+		System.out.println("Searching for \""+pattern+"\" in "+inputFile);
+		
 		createTextString();
+		
+		isFound();
+		System.out.println();
 		
 		runBrute();
 		runKMP();
@@ -32,7 +37,7 @@ public class Experiments {
 	private void createTextString() {
 		
 		try {
-			//txt = Files.readString(Paths.get(this.inputFile));
+			
 			Scanner scanner = new Scanner( new File(inputFile) );
 			txt = scanner.useDelimiter("\\A").next();
 			scanner.close();
@@ -50,6 +55,7 @@ public class Experiments {
 
 		Brute brute = new Brute();
 		
+		//System.out.println(txt);
 		brute.search1(pattern,txt);
 		
 		
@@ -104,6 +110,19 @@ public class Experiments {
 
 		return (end-start);
 
+	}
+	
+	public static void isFound() {
+		
+		BoyerMoore bm = new BoyerMoore(pattern);
+		int temp = bm.search(txt);
+		
+		if(temp>=0) {
+			System.out.println("Found in i= "+temp);
+		}
+		else {
+			System.out.println("Pattern not found");
+		}
 	}
 
 }
