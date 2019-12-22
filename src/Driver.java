@@ -10,7 +10,9 @@ public class Driver {
 		String pattern = "It is a far, far better thing that I do, than I have ever done";
 		String inputFile = "tale.txt";
 		
+		
 		Experiments experiment = new Experiments(pattern, inputFile);
+		
 	}
 
 }

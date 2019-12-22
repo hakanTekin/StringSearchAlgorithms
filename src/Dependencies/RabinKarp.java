@@ -150,12 +150,14 @@ public class RabinKarp {
             txtHash = (txtHash + q - RM*txt.charAt(i-m) % q) % q; 
             txtHash = (txtHash*R + txt.charAt(i)) % q; 
             System.out.println("Hash value :" + txtHash + ", Pattern Value : " + patHash);
+            if(patHash == txtHash) System.out.println("\tMatch Found. Checking if correct result");
             // match
             int offset = i - m + 1;
-            if ((patHash == txtHash) && check(txt, offset))
+            if ((patHash == txtHash) && check(txt, offset)) {
+            	System.out.println("\t\tCorrect Result Found");
                 return offset;
+            }
         }
-
         // no match
         return -1;
     }
